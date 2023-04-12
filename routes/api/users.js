@@ -20,5 +20,4 @@ router.put(
   upload.single("image"),
   ctrlWrapper(ctrl.updateAvatar)
 );
-
 module.exports = router;

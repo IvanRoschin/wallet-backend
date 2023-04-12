@@ -1,5 +1,5 @@
 const multer = require("multer");
-const path = require("path");
+const path = require("node:path");
 
 const tmpDir = path.resolve("tmp");
 
@@ -16,7 +16,7 @@ const multerConfig = multer.diskStorage({
 const upload = multer({
   storage: multerConfig,
   limits: {
-    fileSize: 2048,
+    fileSize: 2048000,
   },
 });
 module.exports = upload;

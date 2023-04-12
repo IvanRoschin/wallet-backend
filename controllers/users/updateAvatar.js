@@ -3,21 +3,26 @@ const { uploadAvatarImage } = require("../../middlewares/cloudinary");
 const fs = require("fs/promises");
 
 const updateAvatar = async (req, res) => {
+  console.log("req.file", req.file);
+  if (!req.file) {
+    res.send("File was not found");
+    return;
+  }
   const { path: upload } = req.file;
-  console.log("upload", upload);
+
   const { _id } = req.user;
 
-  const imageUrl = await uploadAvatarImage(upload);
+  const avatarURL = await uploadAvatarImage(upload);
 
   const updatedUser = await User.findByIdAndUpdate(
     { _id },
     {
-      image: imageUrl,
+      image: avatarURL,
     },
     { new: true }
   );
 
-  res.json({ image: updatedUser.imageUrl });
+  res.json({ image: updatedUser.image });
   fs.unlink(upload);
 };
 
