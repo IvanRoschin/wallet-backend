@@ -36,10 +36,9 @@ const userSchema = new Schema(
       maxLength: 16,
     },
 
-    city: {
-      type: String,
-      required: [true, "City is required"],
-      minLength: 2,
+    balance: {
+      type: Number,
+      default: null,
     },
 
     phone: {
@@ -92,6 +91,7 @@ const joiRegisterSchema = Joi.object({
   // email: Joi.string().min(12).max(50).pattern(emailRegexp).required(),
   password: Joi.string().min(7).pattern(passwordRegexp).required(),
   name: Joi.string().min(2).max(16).pattern(nameRegexp).required(),
+  balance: Joi.number(),
   phone: Joi.string().pattern(phoneRegexp).required(),
 });
 
