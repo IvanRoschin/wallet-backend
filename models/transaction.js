@@ -34,7 +34,10 @@ const transactionSchema = Schema(
       ref: "user",
     },
   },
-  { versionKey: false }
+  {
+    versionKey: false,
+    timestamps: true,
+  }
 );
 
 const transactionJoiSchema = Joi.object({
