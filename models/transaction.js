@@ -21,10 +21,12 @@ const transactionSchema = Schema(
     },
     summ: {
       type: Number,
+      default: null,
       required: true,
     },
     ballance: {
       type: Number,
+      default: null,
       required: true,
     },
     owner: {
