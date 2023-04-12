@@ -5,21 +5,16 @@ const { usersCtrls: ctrl } = require("../../controllers");
 
 const router = express.Router();
 
-router.get("/current", auth, ctrlWrapper(ctrl.getCurrent));
+router.get("/", auth, ctrlWrapper(ctrl.getCurrent));
 
-router.delete("/delete", auth, ctrlWrapper(ctrl.deleteUser));
+router.delete("/", auth, ctrlWrapper(ctrl.deleteUser));
 
 router.patch(
-  "/edit",
+  "/",
   auth,
   validation(joiEditInfoSchema),
   ctrlWrapper(ctrl.editUserInfo)
 );
 
-router.put(
-  "/avatars",
-  auth,
-  upload.single("image"),
-  ctrlWrapper(ctrl.updateAvatar)
-);
+router.put("/", auth, upload.single("image"), ctrlWrapper(ctrl.updateAvatar));
 module.exports = router;

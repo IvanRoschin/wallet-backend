@@ -7,7 +7,7 @@ const getCurrent = async (req, res) => {
   const userTransactions = await Transaction.find(
     { owner: _id },
     "-createdAt -updatedAt"
-  ).populate("owner", "_id date, type, category, comment, sum");
+  ).populate("owner", "_id date, type, category, comment, summ, ballance");
 
   res.json({
     _id,
