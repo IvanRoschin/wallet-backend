@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.get("/current", auth, ctrlWrapper(ctrl.getCurrent));
 
+router.delete("/delete", auth, ctrlWrapper(ctrl.deleteUser));
+
 router.patch(
   "/edit",
   auth,
