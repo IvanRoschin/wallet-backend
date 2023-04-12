@@ -19,12 +19,12 @@ const transactionSchema = Schema(
     comment: {
       type: String,
     },
-    summ: {
+    sum: {
       type: Number,
       default: null,
       required: true,
     },
-    ballance: {
+    balance: {
       type: Number,
       default: null,
       required: true,
@@ -45,8 +45,8 @@ const transactionJoiSchema = Joi.object({
   type: Joi.string().valid("income", "expense").required(),
   category: Joi.string().required(),
   comment: Joi.string(),
-  summ: Joi.number().required(),
-  ballance: Joi.number().required(),
+  sum: Joi.number().required(),
+  balance: Joi.number().required(),
 });
 
 const Transaction = model("transaction", transactionSchema);
