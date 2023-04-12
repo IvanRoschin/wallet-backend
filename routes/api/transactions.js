@@ -6,6 +6,9 @@ const { transactionsCtrls: ctrl } = require("../../controllers");
 const router = express.Router();
 
 router.get("/", auth, ctrlWrapper(ctrl.getTransactions));
+router.get("/month", auth, ctrlWrapper(ctrl.getTransactionsPerMonth));
+router.get("/income", auth, ctrlWrapper(ctrl.amoutIncome));
+
 router.post(
   "/",
   auth,
