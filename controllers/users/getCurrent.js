@@ -1,5 +1,4 @@
 const { Transaction } = require("../../models");
-// const { User } = require("../../models");
 
 const getCurrent = async (req, res) => {
   const { _id, name, email, phone, balance, image } = req.user;
@@ -7,7 +6,7 @@ const getCurrent = async (req, res) => {
   const userTransactions = await Transaction.find(
     { owner: _id },
     "-createdAt -updatedAt"
-  ).populate("owner", "_id date, type, category, comment, summ, ballance");
+  ).populate("owner", "_id date, type, category, comment, sum, balance");
 
   res.json({
     _id,
