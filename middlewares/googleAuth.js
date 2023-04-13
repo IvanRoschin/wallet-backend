@@ -5,12 +5,13 @@ const bcrypt = require("bcryptjs");
 require("dotenv").config();
 const { v4 } = require("uuid");
 
-const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env;
+const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, BACKEND_URL, BASE_URL } =
+  process.env;
 
 const googleParams = {
   clientID: GOOGLE_CLIENT_ID,
   clientSecret: GOOGLE_CLIENT_SECRET,
-  callbackURL: `https://wallet-backend-mu.vercel.app/api/users/google/callback`,
+  callbackURL: `${BASE_URL}/api/auth/google/callback`,
 
   passReqToCallback: true,
 };
