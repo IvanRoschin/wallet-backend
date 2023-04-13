@@ -8,6 +8,15 @@ const amountIncome = async (req, res) => {
         $group: {
           _id: { _id: owner, type: "$type" },
           totalAmount: { $sum: { $multiply: ["$summ"] } },
+          balance: {
+            $sum: {
+              $cond: [
+                { $eq: ["$type", "income"] },
+                "$balance",
+                { $multiply: ["$balance", -1] },
+              ],
+            },
+          },
           count: { $sum: 1 },
         },
       },
