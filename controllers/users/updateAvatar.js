@@ -3,7 +3,6 @@ const { uploadAvatarImage } = require("../../middlewares/cloudinary");
 const fs = require("fs/promises");
 
 const updateAvatar = async (req, res) => {
-  console.log("req.file", req.file);
   if (!req.file) {
     res.send("File was not found");
     return;

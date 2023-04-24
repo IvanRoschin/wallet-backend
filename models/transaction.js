@@ -36,7 +36,6 @@ const transactionSchema = Schema(
   },
   {
     versionKey: false,
-    timestamps: true,
   }
 );
 

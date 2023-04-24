@@ -7,7 +7,9 @@ const router = express.Router();
 
 router.get("/", auth, ctrlWrapper(ctrl.getTransactions));
 router.get("/month", auth, ctrlWrapper(ctrl.getTransactionsPerMonth));
-router.get("/income", auth, ctrlWrapper(ctrl.amoutIncome));
+router.get("/year", auth, ctrlWrapper(ctrl.getTransactionsPerYear));
+
+router.get("/balance", auth, ctrlWrapper(ctrl.getBalance));
 
 router.post(
   "/",
