@@ -22,7 +22,7 @@ const userSchema = new Schema(
 
     password: {
       type: String,
-      required: [true, "Password is required"],
+      required: [true, "Password is fucking required"],
       match: [passwordRegexp, "Password can't contain white spaces"],
       minLength: 7,
       // maxLength: 32,
@@ -38,12 +38,11 @@ const userSchema = new Schema(
 
     balance: {
       type: Number,
-      default: null,
+      default: 0,
     },
 
     phone: {
       type: String,
-      required: [true, "PhoneNumber is required"],
       match: [phoneRegexp, "Please enter a valid phone number"],
     },
 
@@ -60,6 +59,7 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
+    category: [{ type: Schema.Types.ObjectId, ref: "category" }],
 
     transactions: [{ type: Schema.Types.ObjectId, ref: "transactions" }],
   },
@@ -92,7 +92,7 @@ const joiRegisterSchema = Joi.object({
   password: Joi.string().min(7).pattern(passwordRegexp).required(),
   name: Joi.string().min(2).max(16).pattern(nameRegexp).required(),
   balance: Joi.number(),
-  phone: Joi.string().pattern(phoneRegexp).required(),
+  phone: Joi.string().pattern(phoneRegexp),
 });
 
 const joiLoginSchema = Joi.object({
