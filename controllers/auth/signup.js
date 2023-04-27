@@ -12,8 +12,8 @@ const signup = async (req, res) => {
   if (userPhone) {
     throw new Conflict(`${phone} in use`);
   }
-  const image = gravatar.url(email);
-  const newUser = new User({ name, email, phone, image });
+  const photoURL = gravatar.url(email);
+  const newUser = new User({ name, email, phone, photoURL });
   newUser.setPassword(password);
   await newUser.save();
 

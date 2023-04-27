@@ -24,7 +24,7 @@ const googleCallback = async (
   done
 ) => {
   try {
-    const { email, displayName } = profile;
+    const { email, photoURL, displayName } = profile;
     const user = await User.findOne({ email });
     if (user) {
       return done(null, user); // req.user = user
@@ -33,6 +33,7 @@ const googleCallback = async (
     const newUser = await User.create({
       email,
       password,
+      photoURL,
       name: displayName,
       phone: "+380671112233",
     });

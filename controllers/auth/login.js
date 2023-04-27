@@ -10,8 +10,10 @@ const login = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
-  if (!user || !user.comparePassword(password)) {
-    throw new Unauthorized("Email or password is wrong");
+  if (!user) {
+    throw new Unauthorized(`User with email ${email} not found`);
+  } else if (!user.comparePassword(password)) {
+    throw new Unauthorized(`Password incorrect`);
   }
 
   const payload = {
@@ -29,7 +31,7 @@ const login = async (req, res) => {
     accessToken,
     refreshToken,
   });
-  const { name, phone, balance, image, _id } = updatedUser;
+  const { name, phone, balance, photoURL, _id } = updatedUser;
 
   res.json({
     accessToken,
@@ -40,7 +42,7 @@ const login = async (req, res) => {
       name,
       phone,
       balance,
-      image,
+      photoURL,
     },
   });
 };
