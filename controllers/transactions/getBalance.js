@@ -20,6 +20,9 @@ const getBalance = async (req, res) => {
         },
       },
     ]);
+    if (result.length === 0) {
+      res.json({ balance: 0 });
+    }
     res.json(result);
   } catch (error) {
     console.log(error.message);

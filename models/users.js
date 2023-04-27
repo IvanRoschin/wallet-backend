@@ -22,7 +22,7 @@ const userSchema = new Schema(
 
     password: {
       type: String,
-      required: [true, "Password is fucking required"],
+      // required: [true, "Password is fucking required"],
       match: [passwordRegexp, "Password can't contain white spaces"],
       minLength: 7,
       // maxLength: 32,
@@ -46,7 +46,7 @@ const userSchema = new Schema(
       match: [phoneRegexp, "Please enter a valid phone number"],
     },
 
-    image: {
+    photoURL: {
       type: String,
       default: null,
     },

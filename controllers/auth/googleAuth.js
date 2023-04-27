@@ -24,10 +24,7 @@ const googleAuth = async (req, res) => {
     accessToken,
     refreshToken,
   });
-  res
-    .redirect
-    // `https://IvanRoschin.github.io/petly-frontend?accessToken=${accessToken}&refreshToken=${refreshToken}`
-    ();
+  res.redirect`https://IvanRoschin.github.io/wallet-frontend?accessToken=${accessToken}&refreshToken=${refreshToken}`();
 };
 
 module.exports = googleAuth;
