@@ -33,7 +33,7 @@ const googleCallback = async (
     const newUser = await User.create({
       email,
       password,
-      photoURL,
+      photoURL: photoURL,
       name: displayName,
       phone: "+380671112233",
     });
