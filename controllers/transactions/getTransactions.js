@@ -8,9 +8,6 @@ const getTransactions = async (req, res) => {
       "owner",
       "_id name email balance"
     );
-    if (result.length === 0) {
-      res.json(null);
-    }
     res.json(result);
   } catch (err) {
     console.log(err.message);

@@ -51,6 +51,23 @@ const userSchema = new Schema(
       default: null,
     },
 
+    category: {
+      name: {
+        uk: {
+          type: String,
+          required: true,
+          unique: true,
+          default: ["Їжа", "Авто"],
+        },
+        en: {
+          type: String,
+          required: true,
+          unique: true,
+          default: ["Food", "Auto"],
+        },
+      },
+    },
+
     accessToken: {
       type: String,
       default: null,

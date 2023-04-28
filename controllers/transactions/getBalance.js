@@ -20,9 +20,9 @@ const getBalance = async (req, res) => {
         },
       },
     ]);
-    if (result.length === 0) {
-      res.json(null);
-    }
+    // if (!result.length) {
+    //   return true;
+    // }
     res.json(result);
   } catch (err) {
     console.log(err.message);
