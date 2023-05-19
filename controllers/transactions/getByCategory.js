@@ -10,7 +10,7 @@ const getByCategory = async (req, res) => {
           _id: "$category.label",
           color: { $addToSet: "$category.color" },
           type: { $addToSet: "$category.type" },
-          balance: {
+          summ: {
             $sum: { $multiply: ["$sum"] },
           },
           count: { $sum: 1 },
