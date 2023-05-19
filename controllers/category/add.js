@@ -1,15 +1,31 @@
-const { Category } = require("../../models");
+const { Conflict } = require("http-errors");
+const { User } = require("../../models");
 
 const add = async (req, res) => {
-  const { name } = req.body;
+  const { nameUk, nameEn, color } = req.body;
   const { _id: owner } = req.user;
 
-  const result = await Category.create({
-    name,
+  const user = User.find({ owner });
+  console.log("user", user);
+
+  const inGategories = await user.find({
     owner,
   });
 
-  res.status(201).json(result);
+  console.log("inGategories", inGategories);
+
+  if (!inGategories.length) {
+    const updateUser = await User.findOneAndUpdate(
+      { owner },
+      { $push: { category: { nameUk, nameEn, color } } },
+      { new: true }
+    ).populate("category", "-createdAt -updatedAt");
+    console.log("updateUser", updateUser);
+
+    res.json(updateUser);
+  } else {
+    throw new Conflict(`Category has been already added to categories`);
+  }
 };
 
 module.exports = add;

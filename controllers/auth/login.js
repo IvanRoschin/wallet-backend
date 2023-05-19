@@ -1,6 +1,8 @@
 require("dotenv").config();
 
 const { User } = require("../../models/users");
+const { Transaction } = require("../../models");
+
 const { Unauthorized } = require("http-errors");
 const jwt = require("jsonwebtoken");
 
@@ -31,7 +33,12 @@ const login = async (req, res) => {
     accessToken,
     refreshToken,
   });
-  const { name, phone, balance, photoURL, _id } = updatedUser;
+  const { _id, name, phone, balance, photoURL, categories } = updatedUser;
+
+  const userTransactions = await Transaction.find(
+    { owner: _id },
+    "-createdAt -updatedAt"
+  ).populate("owner", "_id, date, type, category, comment, sum, balance");
 
   res.json({
     accessToken,
@@ -43,6 +50,8 @@ const login = async (req, res) => {
       phone,
       balance,
       photoURL,
+      userTransactions,
+      categories,
     },
   });
 };

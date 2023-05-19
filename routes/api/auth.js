@@ -21,6 +21,7 @@ router.post("/signup", validation(joiRegisterSchema), ctrlWrapper(ctrl.signup));
 router.post("/login", validation(joiLoginSchema), ctrlWrapper(ctrl.login));
 
 router.post("/logout", auth, ctrlWrapper(ctrl.logout));
+router.get("/check", ctrlWrapper(ctrl.checkConnection));
 
 router.get(
   "/google",

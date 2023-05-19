@@ -41,6 +41,11 @@ const userSchema = new Schema(
       default: 0,
     },
 
+    categories: {
+      type: Array,
+      default: null,
+    },
+
     phone: {
       type: String,
       match: [phoneRegexp, "Please enter a valid phone number"],
@@ -51,34 +56,19 @@ const userSchema = new Schema(
       default: null,
     },
 
-    category: {
-      name: {
-        uk: {
-          type: String,
-          required: true,
-          unique: true,
-          default: ["Їжа", "Авто"],
-        },
-        en: {
-          type: String,
-          required: true,
-          unique: true,
-          default: ["Food", "Auto"],
-        },
-      },
-    },
-
     accessToken: {
       type: String,
       default: null,
     },
+
     refreshToken: {
       type: String,
       default: null,
     },
-    category: [{ type: Schema.Types.ObjectId, ref: "category" }],
 
-    transactions: [{ type: Schema.Types.ObjectId, ref: "transactions" }],
+    // category: [{ type: Schema.Types.ObjectId, ref: "category" }],
+
+    // transactions: [{ type: Schema.Types.ObjectId, ref: "transactions" }],
   },
 
   { versionKey: false, timestamps: true }

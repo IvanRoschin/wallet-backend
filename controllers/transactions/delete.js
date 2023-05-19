@@ -1,21 +1,13 @@
 const { NotFound } = require("http-errors");
 const { Transaction } = require("../../models");
-const { User } = require("../../models");
 
 const deleteById = async (req, res) => {
-  const { _id } = req.user;
   const { id } = req.params;
-
-  await User.findOneAndUpdate(
-    { _id: _id },
-    { $pull: { categoty: id } },
-    {
-      new: true,
-    }
-  );
+  const { _id } = req.user;
 
   const deletedTransaction = await Transaction.findOneAndRemove({
     _id: id,
+    owner: _id,
   });
 
   if (!deletedTransaction) {

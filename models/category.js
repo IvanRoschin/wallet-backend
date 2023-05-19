@@ -3,23 +3,20 @@ const Joi = require("joi");
 
 const categorySchema = Schema(
   {
-    name: {
-      uk: {
-        type: String,
-        required: true,
-        unique: true,
-        default: ["Їжа", "Авто"],
-      },
-      en: {
-        type: String,
-        required: true,
-        unique: true,
-        default: ["Food", "Auto"],
-      },
+    nameUk: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    owner: {
-      type: Schema.Types.ObjectId,
-      ref: "user",
+    nameEn: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    color: {
+      type: String,
+      required: true,
+      unique: true,
     },
   },
   {
@@ -30,6 +27,7 @@ const categorySchema = Schema(
 const categoryJoiSchema = Joi.object({
   nameUk: Joi.string().required(),
   nameEn: Joi.string().required(),
+  color: Joi.string().required(),
 });
 
 const Category = model("category", categorySchema);

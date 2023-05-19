@@ -10,6 +10,9 @@ router.get("/month", auth, ctrlWrapper(ctrl.getTransactionsPerMonth));
 router.get("/year", auth, ctrlWrapper(ctrl.getTransactionsPerYear));
 
 router.get("/balance", auth, ctrlWrapper(ctrl.getBalance));
+router.get("/category", auth, ctrlWrapper(ctrl.getByCategory));
+
+router.delete("/:id", auth, ctrlWrapper(ctrl.deleteById));
 
 router.post(
   "/",

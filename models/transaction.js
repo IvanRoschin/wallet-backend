@@ -10,12 +10,14 @@ const transactionSchema = Schema(
     type: {
       type: String,
       enum: ["income", "expense"],
+      default: "income",
       required: true,
     },
     category: {
-      type: String,
+      type: Object,
       required: true,
     },
+
     comment: {
       type: String,
     },
@@ -42,10 +44,10 @@ const transactionSchema = Schema(
 const transactionJoiSchema = Joi.object({
   date: Joi.date().required(),
   type: Joi.string().valid("income", "expense").required(),
-  category: Joi.string().required(),
+  category: Joi.object().required(),
   comment: Joi.string(),
   sum: Joi.number().required(),
-  balance: Joi.number().required(),
+  balance: Joi.string(),
 });
 
 const Transaction = model("transaction", transactionSchema);

@@ -1,4 +1,5 @@
 const { User } = require("../../models/users");
+const { defaultCategories: categories } = require("../../helpers");
 const { Conflict } = require("http-errors");
 const gravatar = require("gravatar");
 
@@ -12,16 +13,13 @@ const signup = async (req, res) => {
   if (userPhone) {
     throw new Conflict(`${phone} in use`);
   }
+
   const photoURL = gravatar.url(email);
-  const newUser = new User({ name, email, phone, photoURL });
+  const newUser = new User({ name, email, phone, photoURL, categories });
   newUser.setPassword(password);
   await newUser.save();
 
-  res.status(201).json(
-    newUser
-
-    // message: "You have been successfully registered",
-  );
+  res.status(201).json(newUser);
 };
 
 module.exports = signup;

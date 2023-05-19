@@ -4,7 +4,7 @@ const getTransactionsPerMonth = require("./getTransactionsPerMonth");
 const getTransactionsPerYear = require("./getTransactionsPerYear");
 const getBalance = require("./getBalance");
 const deleteById = require("./delete");
-
+const getByCategory = require("./getByCategory");
 module.exports = {
   getTransactions,
   addTransaction,
@@ -12,4 +12,5 @@ module.exports = {
   getTransactionsPerYear,
   getBalance,
   deleteById,
+  getByCategory,
 };
