@@ -1,9 +1,9 @@
-const { Category } = require("../../models");
+const { User } = require("../../models");
 
 const getCategories = async (req, res) => {
   const { _id: owner } = req.user;
 
-  const result = await Category.find({ owner }).populate("owner", "_id name");
+  const result = await User.find({ owner });
 
   res.json(result);
 };

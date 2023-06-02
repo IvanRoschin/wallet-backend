@@ -16,5 +16,10 @@ router.patch(
   ctrlWrapper(ctrl.editUserInfo)
 );
 
-router.put("/", auth, upload.single("image"), ctrlWrapper(ctrl.updateAvatar));
+router.put(
+  "/",
+  auth,
+  upload.single("photoURL"),
+  ctrlWrapper(ctrl.updateAvatar)
+);
 module.exports = router;

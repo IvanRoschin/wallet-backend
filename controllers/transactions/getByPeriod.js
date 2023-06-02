@@ -2,7 +2,7 @@ const { Transaction } = require("../../models");
 
 const getByPeriod = async (req, res) => {
   const { _id: owner } = req.user;
-  const { month, year } = req.query; // Assuming month, year, and fieldToCheck are passed as query parameters
+  const { month, year } = req.query; // Assuming month and year are passed as query parameters
 
   // Check if year and month are not provided
   const isYearMonthNotProvided = !year && !month;
@@ -25,8 +25,8 @@ const getByPeriod = async (req, res) => {
           _id: "$category.label",
           color: { $addToSet: "$category.color" },
           type: { $addToSet: "$category.type" },
+
           summ: { $sum: { $multiply: ["$sum"] } },
-          count: { $sum: 1 },
         },
       },
     ]);

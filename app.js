@@ -6,6 +6,7 @@ const authRouter = require("./routes/api/auth");
 const usersRouter = require("./routes/api/users");
 const transactionsRouter = require("./routes/api/transactions");
 const categoryRouter = require("./routes/api/category");
+const currencyRouter = require("./routes/api/currency");
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/transactions", transactionsRouter);
 app.use("/api/category", categoryRouter);
+app.use("/api/currency", currencyRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

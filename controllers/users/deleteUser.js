@@ -5,9 +5,7 @@ const deleteUser = async (req, res) => {
 
   await User.findByIdAndDelete(
     { _id },
-    {
-      new: true,
-    }
+    { accessToken: null, refreshToken: null }
   );
   res.status(204).json();
 };

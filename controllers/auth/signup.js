@@ -1,4 +1,5 @@
 const { User } = require("../../models/users");
+
 const { defaultCategories: categories } = require("../../helpers");
 const { Conflict } = require("http-errors");
 const gravatar = require("gravatar");
