@@ -41,10 +41,31 @@ const userSchema = new Schema(
       default: 0,
     },
 
-    categories: {
-      type: Array,
-      default: null,
-    },
+    categories: [
+      {
+        nameUk: {
+          type: String,
+          required: true,
+          unique: true,
+        },
+        nameEn: {
+          type: String,
+          required: true,
+          unique: true,
+        },
+        color: {
+          type: String,
+          required: true,
+          unique: true,
+        },
+        type: {
+          type: String,
+          enum: ["income", "expense"],
+          default: "income",
+          required: true,
+        },
+      },
+    ],
 
     phone: {
       type: String,
@@ -132,6 +153,13 @@ const joiRefreshTokenSchema = Joi.object({
   refreshToken: Joi.string().required(),
 });
 
+const joiCategorySchema = Joi.object({
+  nameUk: Joi.string().required(),
+  nameEn: Joi.string().required(),
+  color: Joi.string().required(),
+  type: Joi.string().required(),
+});
+
 const User = model("user", userSchema);
 
 module.exports = {
@@ -140,4 +168,5 @@ module.exports = {
   joiLoginSchema,
   joiEditInfoSchema,
   joiRefreshTokenSchema,
+  joiCategorySchema,
 };

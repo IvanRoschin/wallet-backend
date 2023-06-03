@@ -1,30 +1,36 @@
-const { Conflict } = require("http-errors");
+const { BadRequest } = require("http-errors");
 const { User } = require("../../models");
 
 const add = async (req, res) => {
-  const { nameUk, nameEn, color } = req.body;
-  const { _id: owner } = req.user;
+  try {
+    const { nameUk, nameEn, type, color } = req.body;
+    const { _id: owner } = req.user;
 
-  const user = User.find({ owner });
-  console.log("user", user);
+    const user = await User.findOne({ _id: owner });
 
-  const inGategories = await user.find({
-    owner,
-  });
+    const categoryExists = user.categories.some(
+      (category) => category.nameUk === nameUk || category.nameEn === nameEn
+    );
 
-  console.log("inGategories", inGategories);
+    const colorExists = user.categories.some(
+      (category) => category.color === color
+    );
 
-  if (!inGategories.length) {
-    const updateUser = await User.findOneAndUpdate(
-      { owner },
-      { $push: { category: { nameUk, nameEn, color } } },
-      { new: true }
-    ).populate("category", "-createdAt -updatedAt");
-    console.log("updateUser", updateUser);
+    if (colorExists) {
+      throw new BadRequest("Such color already use, please choose another");
+    } else if (categoryExists) {
+      throw new BadRequest("Such category already exists");
+    }
+    {
+      user.categories.push({ nameUk, nameEn, type, color });
+      const updateUser = await user.save();
 
-    res.json(updateUser);
-  } else {
-    throw new Conflict(`Category has been already added to categories`);
+      res.json(updateUser.categories);
+    }
+  } catch (error) {
+    // Handle the error
+    console.error(error);
+    res.status(error.status || 500).json({ error: error.message });
   }
 };
 

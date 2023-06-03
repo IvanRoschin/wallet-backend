@@ -3,11 +3,11 @@ const { Transaction } = require("../../models");
 
 const deleteById = async (req, res) => {
   const { id } = req.params;
-  const { _id } = req.user;
+  const { _id: owner } = req.user;
 
   const deletedTransaction = await Transaction.findOneAndRemove({
     _id: id,
-    owner: _id,
+    owner,
   });
 
   if (!deletedTransaction) {

@@ -1,27 +1,24 @@
 const { NotFound } = require("http-errors");
-const { Category } = require("../../models");
 const { User } = require("../../models");
 
-const deleteById = async (req, res) => {
-  const { _id } = req.user;
-  const { id } = req.params;
+const deleteByName = async (req, res) => {
+  const { _id: owner } = req.user;
+  const { categoryId } = req.params;
 
-  await User.findOneAndUpdate(
-    { _id: _id },
-    { $pull: { categoty: id } },
-    {
-      new: true,
+  try {
+    const updateUser = await User.findOneAndUpdate(
+      { _id: owner },
+      { $pull: { categories: { _id: categoryId } } },
+      { new: true }
+    );
+    if (!updateUser) {
+      throw new NotFound(`User not found`);
     }
-  );
-
-  const deletedCategory = await Category.findOneAndRemove({
-    _id: id,
-  });
-
-  if (!deletedCategory) {
-    throw new NotFound(`Transaction with id=${id} not found`);
+    res.json(updateUser.categories);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
   }
-  res.json({ result: id });
 };
 
-module.exports = deleteById;
+module.exports = deleteByName;
