@@ -14,11 +14,46 @@ const defaultCategories = [
     _id: "647b957efe51b244c4ce718b",
   },
   {
-    nameUk: "Дом",
-    nameEn: "House",
+    nameUk: "Комуналка",
+    nameEn: "Utility payments",
     type: "expense",
     color: "#ff9800",
+    _id: "647b957efe51b244c4ce712b",
+  },
+  {
+    nameUk: "Діти",
+    nameEn: "Children",
+    type: "expense",
+    color: "#2196f3",
     _id: "647b957efe51b244c4ce719b",
+  },
+  {
+    nameUk: "Спорт",
+    nameEn: "Sport",
+    type: "expense",
+    color: "#ffeb3b",
+    _id: "647b957efe51b244c4ce719b",
+  },
+  {
+    nameUk: "Освіта",
+    nameEn: "Education",
+    type: "expense",
+    color: "#e91e63",
+    _id: "647b957efe51b244c4ce714b",
+  },
+  {
+    nameUk: "Здоров'я",
+    nameEn: "Health",
+    type: "expense",
+    color: "#3f51b5",
+    _id: "647b957efe51b244c4ce744b",
+  },
+  {
+    nameUk: "Медицина",
+    nameEn: "Medicine",
+    type: "expense",
+    color: "#673ab7",
+    _id: "647b957efe51b244c4ce734b",
   },
   {
     nameUk: "Зарплата",
@@ -31,7 +66,7 @@ const defaultCategories = [
     nameUk: "Подарунок",
     nameEn: "Gift",
     type: "income",
-    color: "#795548",
+    color: "#75D7B4",
     _id: "647b957efe51b244c4ce721b",
   },
   {
@@ -39,7 +74,7 @@ const defaultCategories = [
     nameEn: "Haliava",
     type: "income",
     color: "#00bcd4",
-    _id: "647b957efe51b244c4ce723b",
+    _id: "647b957efe51b244c4ce722b",
   },
 ];
 

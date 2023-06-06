@@ -16,7 +16,13 @@ const signup = async (req, res) => {
   }
 
   const photoURL = gravatar.url(email);
-  const newUser = new User({ name, email, phone, photoURL, categories });
+  const newUser = new User({
+    name,
+    email,
+    phone,
+    photoURL,
+    categories,
+  });
   newUser.setPassword(password);
   await newUser.save();
 

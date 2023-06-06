@@ -33,12 +33,12 @@ const login = async (req, res) => {
     accessToken,
     refreshToken,
   });
-  const { _id, name, phone, balance, photoURL, categories } = updatedUser;
+  const { _id, name, phone, photoURL, categories } = updatedUser;
 
   const userTransactions = await Transaction.find(
     { owner: _id },
     "-createdAt -updatedAt"
-  ).populate("owner", "_id, date, type, category, comment, sum, balance");
+  ).populate("owner", "_id, date, type, category, comment, sum");
 
   res.json({
     accessToken,
@@ -48,7 +48,6 @@ const login = async (req, res) => {
       email,
       name,
       phone,
-      balance,
       photoURL,
       userTransactions,
       categories,

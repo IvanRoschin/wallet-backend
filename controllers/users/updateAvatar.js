@@ -9,12 +9,12 @@ const updateAvatar = async (req, res) => {
   }
   const { path: upload } = req.file;
 
-  const { _id: owner } = req.user;
+  const { _id } = req.user;
 
   const avatarURL = await uploadAvatarImage(upload);
 
   const updatedUser = await User.findByIdAndUpdate(
-    { owner },
+    { _id },
     {
       photoURL: avatarURL,
     },
