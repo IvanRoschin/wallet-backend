@@ -32,7 +32,7 @@ const defaultCategories = [
     nameEn: "Sport",
     type: "expense",
     color: "#ffeb3b",
-    _id: "647b957efe51b244c4ce719b",
+    _id: "647b957efe51b244c4ce745b",
   },
   {
     nameUk: "Освіта",
