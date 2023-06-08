@@ -25,7 +25,6 @@ const getByPeriod = async (req, res) => {
           _id: "$category.label",
           color: { $addToSet: "$category.color" },
           type: { $addToSet: "$category.type" },
-
           summ: { $sum: { $multiply: ["$sum"] } },
         },
       },
