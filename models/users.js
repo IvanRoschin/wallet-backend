@@ -44,7 +44,6 @@ const userSchema = new Schema(
     categories: [
       {
         _id: { type: String, required: true },
-
         nameUk: {
           type: String,
           required: true,

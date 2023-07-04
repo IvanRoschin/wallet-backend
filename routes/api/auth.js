@@ -31,7 +31,11 @@ router.get(
 );
 router.get(
   "/google/callback",
-  passport.authenticate("google", { session: false }),
+  passport.authenticate("google", {
+    session: false,
+    successRedirect: "/home",
+    failureRedirect: "/login",
+  }),
   ctrlWrapper(ctrl.googleAuth)
 );
 
