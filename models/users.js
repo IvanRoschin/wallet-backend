@@ -43,20 +43,19 @@ const userSchema = new Schema(
 
     categories: [
       {
+        _id: { type: String, required: true },
+
         nameUk: {
           type: String,
           required: true,
-          unique: true,
         },
         nameEn: {
           type: String,
           required: true,
-          unique: true,
         },
         color: {
           type: String,
           required: true,
-          unique: true,
         },
         type: {
           type: String,

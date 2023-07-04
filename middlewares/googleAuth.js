@@ -4,6 +4,7 @@ const { User } = require("../models");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
 const { v4 } = require("uuid");
+const { defaultCategories: categories } = require("../helpers");
 
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, BACKEND_URL } = process.env;
 
@@ -32,9 +33,10 @@ const googleCallback = async (
     const newUser = await User.create({
       email,
       password,
-      photoURL: photoURL,
+      photoURL,
       name: displayName,
       phone: "+380671112233",
+      categories,
     });
     done(null, newUser);
   } catch (error) {
