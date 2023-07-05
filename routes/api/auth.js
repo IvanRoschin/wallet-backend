@@ -33,7 +33,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", {
     session: false,
-    successRedirect: "/home",
+    successRedirect: "https://ivanroschin.github.io/wallet-frontend/home",
     failureRedirect: "/login",
   }),
   ctrlWrapper(ctrl.googleAuth)
