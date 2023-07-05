@@ -2,8 +2,7 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../../models");
 require("dotenv").config();
 
-const { ACCESS_SECRET_KEY, REFRESH_SECRET_KEY } = process.env;
-// , FRONTEND_URL
+const { ACCESS_SECRET_KEY, REFRESH_SECRET_KEY, FRONTEND_URL } = process.env;
 
 const googleAuth = async (req, res) => {
   const { _id: id } = req.user;
@@ -20,12 +19,16 @@ const googleAuth = async (req, res) => {
     // const refreshToken = jwt.sign(payload, REFRESH_SECRET_KEY, {
     expiresIn: "7d",
   });
+  console.log("accessToken", accessToken);
+  console.log("refreshToken", refreshToken);
   await User.findByIdAndUpdate(id, {
     accessToken,
     refreshToken,
   });
 
-  res.redirect`https://ivanroschin.github.io/wallet-frontend/home?accessToken=${accessToken}&refreshToken=${refreshToken}`();
+  res.redirect(
+    `${FRONTEND_URL}?accessToken=${accessToken}&refreshToken=${refreshToken}`
+  );
 };
 
 module.exports = googleAuth;

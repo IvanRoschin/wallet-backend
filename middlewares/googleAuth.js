@@ -12,7 +12,6 @@ const googleParams = {
   clientID: GOOGLE_CLIENT_ID,
   clientSecret: GOOGLE_CLIENT_SECRET,
   callbackURL: `${BACKEND_URL}/api/auth/google/callback`,
-
   passReqToCallback: true,
 };
 
