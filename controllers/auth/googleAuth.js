@@ -24,7 +24,7 @@ const googleAuth = async (req, res) => {
   });
 
   res.redirect(
-    `${FRONTEND_URL}/home?accessToken=${accessToken}&refreshToken=${refreshToken}`
+    `https://ivanroschin.github.io/wallet-frontend/home?accessToken=${accessToken}&refreshToken=${refreshToken}`
   );
 };
 
