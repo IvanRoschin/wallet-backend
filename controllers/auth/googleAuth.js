@@ -24,7 +24,7 @@ const googleAuth = async (req, res) => {
   });
 
   res.redirect(
-    `${FRONTEND_URL}?accessToken=${accessToken}&refreshToken=${refreshToken}`
+    `${FRONTEND_URL}/home?accessToken=${accessToken}&refreshToken=${refreshToken}`
   );
 };
 
