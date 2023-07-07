@@ -6,6 +6,7 @@ const { categoryCtrls: ctrl } = require("../../controllers");
 const router = express.Router();
 
 router.get("/", auth, ctrlWrapper(ctrl.getAll));
+
 router.post("/", auth, validation(joiCategorySchema), ctrlWrapper(ctrl.add));
 router.delete("/:categoryId", auth, ctrlWrapper(ctrl.deleteByName));
 

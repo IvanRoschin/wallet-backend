@@ -1,8 +1,11 @@
 const { BadRequest } = require("http-errors");
 const { User } = require("../../models");
+// const { generateObjectId } = require("../../helpers");
 
 const add = async (req, res) => {
   try {
+    // const _id = generateObjectId();
+
     const { nameUk, nameEn, type, color } = req.body;
     const { _id: owner } = req.user;
 

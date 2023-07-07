@@ -86,3 +86,4 @@ const defaultCategories = [
 ];
 
 module.exports = { defaultCategories };
+module.exports = { generateObjectId };
