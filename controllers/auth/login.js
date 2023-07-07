@@ -40,7 +40,7 @@ const login = async (req, res) => {
     "-createdAt -updatedAt"
   ).populate("owner", "_id, date, type, category, comment, sum");
 
-  res.json({
+  res.status(200).json({
     accessToken,
     refreshToken,
     user: {

@@ -1,6 +1,6 @@
 const { BadRequest } = require("http-errors");
 const { User } = require("../../models");
-// const { generateObjectId } = require("../../helpers");
+const { generateObjectId } = require("../../helpers");
 
 const add = async (req, res) => {
   try {
@@ -25,7 +25,13 @@ const add = async (req, res) => {
       throw new BadRequest("Such category already exists");
     }
     {
-      user.categories.push({ nameUk, nameEn, type, color });
+      user.categories.push({
+        _id: generateObjectId(),
+        nameUk,
+        nameEn,
+        type,
+        color,
+      });
       const updateUser = await user.save();
 
       res.json(updateUser.categories);
