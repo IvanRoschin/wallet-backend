@@ -15,8 +15,6 @@ const googleAuth = async (req, res) => {
   const refreshToken = jwt.sign(payload, REFRESH_SECRET_KEY, {
     expiresIn: "7d",
   });
-  console.log("accessToken", accessToken);
-  console.log("refreshToken", refreshToken);
 
   await User.findByIdAndUpdate(id, {
     accessToken,
@@ -24,9 +22,9 @@ const googleAuth = async (req, res) => {
   });
 
   res.redirect(
-    // `http://localhost:3000/wallet-frontend/login?accessToken=${accessToken}&refreshToken=${refreshToken}`
+    `http://localhost:3000/wallet-frontend/login?accessToken=${accessToken}&refreshToken=${refreshToken}`
 
-    `https://ivanroschin.github.io/wallet-frontend/login?accessToken=${accessToken}&refreshToken=${refreshToken}`
+    // `https://ivanroschin.github.io/wallet-frontend/login?accessToken=${accessToken}&refreshToken=${refreshToken}`
   );
 };
 

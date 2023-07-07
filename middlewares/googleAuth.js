@@ -23,6 +23,7 @@ const googleCallback = async (
   done
 ) => {
   try {
+    console.log("profile", profile);
     const { email, photoURL, displayName } = profile;
     const user = await User.findOne({ email });
     if (user) {
@@ -32,11 +33,12 @@ const googleCallback = async (
     const newUser = await User.create({
       email,
       password,
-      photoURL,
+      photoURL: photoURL,
       name: displayName,
       phone: "+380671112233",
       categories,
     });
+    console.log("photoURL", photoURL);
     done(null, newUser);
   } catch (error) {
     done(error, false);
