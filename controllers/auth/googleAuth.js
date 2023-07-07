@@ -15,8 +15,6 @@ const googleAuth = async (req, res) => {
   const refreshToken = jwt.sign(payload, REFRESH_SECRET_KEY, {
     expiresIn: "7d",
   });
-  console.log("accessToken", accessToken);
-  console.log("refreshToken", refreshToken);
 
   await User.findByIdAndUpdate(id, {
     accessToken,
